@@ -3,13 +3,13 @@ pipeline {
 	stages {
 		stage('Checkout SCM') {
 			steps {
-				git 'https://github.com/lmaoggrofl/JenkinsDependencyCheckTest.git'
+				git url: 'https://github.com/lmaoggrofl/JenkinsDependencyCheckTest.git', branch: 'master'
 			}
 		}
 
 		stage('OWASP DependencyCheck') {
 			steps {
-				dependencyCheck additionalArguments: '--noupdate --format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+				dependencyCheck additionalArguments: '--nvdApiKey "176cfd53-8ad1-40bd-a460-c10570a164d6" --format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
 			}
 		}
 	}	
